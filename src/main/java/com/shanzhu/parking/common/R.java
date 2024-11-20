@@ -19,7 +19,7 @@ public class R<T> implements Serializable {
     private Boolean flag;
 
     /**
-     * 状态码
+     * state code
      */
     private String code;
 
