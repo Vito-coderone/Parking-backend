@@ -4,36 +4,36 @@ package com.shanzhu.parking.entity.query;
 import lombok.Data;
 
 /**
- * 车辆信息 查询对象
+ * Vehicle Information  Query Object
  *
- * @author: ShanZhu
- * @date: 2023-12-02
+ * @author: Zi Cheng
+ * @date: 2024-12-02
  */
 @Data
 public class CarQuery {
 
     /**
-     * 人员
+     * personnel
      */
     private String person;
 
     /**
-     * 车辆类型
+     * Vehicle Type
      */
     private String carType;
 
     /**
-     * 证件号码
+     * ID number
      */
     private String card;
 
     /**
-     * 分页页码
+     * Pagination page number
      */
     private Integer pagenum;
 
     /**
-     * 分页大小
+     * Page size
      */
     private Integer pageSize;
 

@@ -3,16 +3,16 @@ package com.shanzhu.parking.entity.query;
 import lombok.Data;
 
 /**
- * 用户信息 查询对象
+ * User Information   Query Object
  *
- * @author: ShanZhu
- * @date: 2023-12-02
+ * @author:     Zi Cheng
+ * @date: 2024-12-02
  */
 @Data
 public class LoginInfoQuery {
 
     /**
-     * 用户名
+     * username
      */
     private String person;
 
@@ -22,12 +22,12 @@ public class LoginInfoQuery {
     private String ip;
 
     /**
-     * 分页大小
+     * Page size
      */
     private Integer pageSize;
 
     /**
-     * 分页页数
+     * Number of pages
      */
     private Integer pagenum;
 

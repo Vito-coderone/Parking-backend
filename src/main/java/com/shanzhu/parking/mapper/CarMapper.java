@@ -5,9 +5,9 @@ import com.shanzhu.parking.entity.po.Car;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 车辆 持久层
+ * Vehicle Persistence Layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper

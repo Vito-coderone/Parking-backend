@@ -5,7 +5,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 停车位费用缴费统计数据
+ * Parking fee payment statistics
  *
  * @author: Cheng Zi
  * @date: 2024-09-23
@@ -14,12 +14,12 @@ import java.time.LocalDateTime;
 public class StallFee {
 
     /**
-     * 名称
+     * name
      */
     private LocalDateTime name;
 
     /**
-     * 值
+     * value
      */
     private Double value;
 

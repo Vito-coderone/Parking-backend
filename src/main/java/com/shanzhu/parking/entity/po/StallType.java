@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * 停车位类型
+ * Parking space type
  *
  * @author: Zi Cheng
  * @date: 2024-10-10
@@ -19,18 +19,18 @@ public class StallType implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 车位类型编号
+     * Parking space type number
      */
     @TableId(value = "oid", type = IdType.AUTO)
     private Integer oid;
 
     /**
-     * 车位类型
+     * Parking space type
      */
     private String otype;
 
     /**
-     * 车位价格
+     * Parking space price
      */
     private Double omoney;
 

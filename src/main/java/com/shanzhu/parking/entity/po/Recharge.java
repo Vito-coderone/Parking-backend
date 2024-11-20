@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 充值
+ * Recharge
  *
  * @author: Zi Cheng
  * @date: 2024-09-27
@@ -19,23 +19,23 @@ public class Recharge implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 充值编号
+     * Recharge Number
      */
     @TableId(value = "cid", type = IdType.AUTO)
     private Integer cid;
 
     /**
-     * 用户
+     * user
      */
     private String person;
 
     /**
-     * 充值金额
+     * Recharge amount
      */
     private Double money;
 
     /**
-     * 充值时间
+     * Recharge time
      */
     private LocalDateTime ctime;
 

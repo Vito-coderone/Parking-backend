@@ -8,7 +8,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 停车位
+ * Parking
  *
  * @author: Zi Cheng
  * @date: 2024-10-5
@@ -19,49 +19,49 @@ public class Stall implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 车位编号
+     * Parking space number
      */
     @TableId(value = "sid", type = IdType.AUTO)
     private Integer sid;
 
     /**
-     * 车位号
+     * Parking space number
      */
     @TableField("stall_num")
     private String stallNum;
 
     /**
-     * 车位区域
+     * Parking area
      */
     @TableField("stall_area")
     private String stallArea;
 
     /**
-     * 车位类型
+     * Parking space type
      */
     @TableField("stall_type")
     private String stallType;
 
     /**
-     * 车位状态
+     * Parking space status
      */
     @TableField("stall_state")
     private String stallState;
 
     /**
-     * 车位收费
+     * Parking fee
      */
     @TableField("stall_money")
     private Double stallMoney;
 
     /**
-     * 逻辑删除标志
+     * Logical deletion flag
      */
     @TableField("stall_live")
     private String stallLive;
 
     /**
-     * 用户编号
+     * User Number
      */
     @TableField("user_id")
     private Integer userId;

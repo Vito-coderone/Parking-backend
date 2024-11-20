@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 用户信息
+ * user info
  *
  * @author: Zi Cheng
  * @date: 2024-10-19
@@ -21,67 +21,67 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID
+     * user ID
      */
     @TableId(value = "uid", type = IdType.AUTO)
     private Integer uid;
 
     /**
-     * 用户名
+     * username
      */
     private String username;
 
     /**
-     * 密码
+     * password
      */
     private String password;
 
     /**
-     * 昵称
+     * nike name
      */
     private String nike;
 
     /**
-     * 年龄
+     * age
      */
     private Integer age;
 
     /**
-     * 性别
+     * sex
      */
     private String sex;
 
     /**
-     * 联系方式
+     * contact number
      */
     private String phone;
 
     /**
-     * 车牌号
+     * licesn plate number
      */
     private String card;
 
     /**
-     * 余额
+     * Balance
      */
     private Double money;
 
     /**
-     * 角色。0System Administrator，1车主
+     * role. 0 System Administrator，1 car owner
      */
     private Integer role;
 
     /**
-     * 缴费扣费
+     * Payment deduction
      *
-     * @param payMoney 缴费金额
+     * @param payMoney Payment amount
      */
     public void updateMoney(Double payMoney) {
         this.money = this.money - payMoney;
     }
 
     /**
-     * 创建时间
+     * creation time
      */
     @TableField("create_time")
     private LocalDateTime createTime;

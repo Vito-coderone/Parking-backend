@@ -21,9 +21,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 车位 服务层实现类
+ * Parking space   service layer implementation class
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 @Service
@@ -42,39 +42,39 @@ public class StallServiceImpl extends ServiceImpl<StallMapper, Stall> implements
 
     @Override
     public IPage<Stall> pageStall(StallQuery stallQuery) {
-        //分页条件
+        //Paging conditions
         Page<Stall> page = new Page<>(stallQuery.getPagenum(), stallQuery.getPageSize());
 
-        //查询条件
+        //Query conditions
         LambdaQueryWrapper<Stall> lambdaQuery = Wrappers.<Stall>lambdaQuery()
-                //车位
+                //Parking Space
                 .eq(StrUtil.isNotBlank(stallQuery.getCarArea()), Stall::getStallArea, stallQuery.getCarArea())
-                //车位状态
+                //Parking space status
                 .eq(StrUtil.isNotBlank(stallQuery.getCarState()), Stall::getStallState, stallQuery.getCarState())
-                //车位类型
+                //Parking space type
                 .eq(StrUtil.isNotBlank(stallQuery.getCarType()), Stall::getStallType, stallQuery.getCarType())
-                //未删除
+                //Not deleted
                 .eq(Stall::getStallLive, "1");
 
-        //分页查询
+        //Pagination Query
         return this.page(page, lambdaQuery);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean orderStall(Integer uid, Integer sid) {
-        //查询车位信息
+        //Query parking space information
         Stall stall = this.getById(sid);
 
-        //判断没有人停车
+        //No one is parking
         if (stall.getUserId() == null) {
 
-            //更新车位状态
+            //Update parking space status
             stall.setUserId(uid);
             stall.setStallState("已停车");
             stallMapper.updateById(stall);
 
-            //添加个人停车记录
+            //Add personal parking record
             StallRes stallRes = new StallRes();
             User user = userMapper.selectById(uid);
             stallRes.setPerson(user.getUsername());
@@ -90,54 +90,54 @@ public class StallServiceImpl extends ServiceImpl<StallMapper, Stall> implements
 
     @Override
     public MsgVo addStall(Stall stall) {
-        //查询车位类型
+        //Query parking space type
         StallType stallType = stallTypeMapper.selectOne(
                 Wrappers.<StallType>lambdaQuery().eq(StallType::getOtype,
                         stall.getStallType())
         );
 
-        //查询已存在车位信息
+        //Query existing parking space information
         Stall existStall = stallMapper.selectOne(
                 Wrappers.<Stall>lambdaQuery()
                         .eq(Stall::getStallNum, stall.getStallNum())
                         .eq(Stall::getStallArea, stall.getStallArea())
                         .eq(Stall::getStallType, stall.getStallType()));
 
-        //车位不存在
+        //Parking space does not exist
         if (existStall == null) {
-            //设置车位状态
-            stall.setStallState("空闲中");
+            //Set parking space status
+            stall.setStallState("Idle");
             stall.setStallLive("1");
             stall.setStallMoney(stallType.getOmoney());
 
-            //保存车位
+            //Save parking space
             if (this.save(stall)) {
-                return new MsgVo(true, "添加成功");
+                return new MsgVo(true, "Added successfully");
             } else {
-                return new MsgVo(false, "添加失败，请重新尝试");
+                return new MsgVo(false, "Add failed, please try again");
             }
         } else {
-            return new MsgVo(false, "该车位已经存在");
+            return new MsgVo(false, "This parking space already exists");
         }
     }
 
     @Override
     public MsgVo updateStall(Stall stall) {
-        //查询已存在车位
+        //Check existing parking spaces
         Stall existStall = stallMapper.selectOne(
                 Wrappers.<Stall>lambdaQuery()
                         .eq(Stall::getStallNum, stall.getStallNum())
                         .eq(Stall::getStallArea, stall.getStallArea()));
 
-        //车位存在才能更新
+        //Parking space can be updated only if it exists
         if (existStall != null) {
             if (this.updateById(stall)) {
-                return new MsgVo(true, "修改成功");
+                return new MsgVo(true, "Modification successful");
             } else {
-                return new MsgVo(false, "修改失败，请重新尝试");
+                return new MsgVo(false, "The modification failed, please try again");
             }
         } else {
-            return new MsgVo(false, "修改失败，车位不存在");
+            return new MsgVo(false, "Modification failed, the parking space does not exist");
         }
 
     }
@@ -149,7 +149,7 @@ public class StallServiceImpl extends ServiceImpl<StallMapper, Stall> implements
 
     @Override
     public IPage<StallRes> getAllListStallRes(StallResQuery stallResQuery) {
-        //分页条件
+        //Paging conditions
         Page<StallRes> page = new Page<>(stallResQuery.getPagenum(), stallResQuery.getPageSize());
 
         return stallResMapper.getAllListStallRes(
@@ -161,40 +161,40 @@ public class StallServiceImpl extends ServiceImpl<StallMapper, Stall> implements
     @Override
     @Transactional(rollbackFor = Exception.class)
     public MsgVo payMoneyPerson(StallRes stallRes) {
-        //查询车主用户
+        //Query car owner user
         User user = userMapper.selectOne(
                 Wrappers.<User>lambdaQuery().eq(User::getUsername, stallRes.getPerson())
         );
 
         if (user == null) {
-            return new MsgVo(false, "缴费失败");
+            return new MsgVo(false, "Payment failed");
         }
 
         if (user.getMoney() >= stallRes.getMoney()) {
-            //更新用户余额
+            //Update user balance
             user.setMoney(user.getMoney() - stallRes.getMoney());
             userMapper.updateById(user);
 
-            //设置车位空闲状态
+            //Set parking space vacancy status
             stallMapper.setStallOrg(stallRes.getStallId());
 
-            //更新停车记录
+            //Update parking record
             StallRes userStallRes = new StallRes();
             userStallRes.setPid(stallRes.getPid());
             userStallRes.setOverTime(LocalDateTime.now());
             userStallRes.setMoney(stallRes.getMoney());
             stallResMapper.updateById(userStallRes);
 
-            //保存缴费记录
+            //Keep payment records
             Recharge recharge = new Recharge();
             recharge.setMoney(stallRes.getMoney());
             recharge.setPerson(stallRes.getPerson());
             recharge.setCtime(LocalDateTime.now());
             rechargeMapper.insert(recharge);
 
-            return new MsgVo(true, "缴费成功");
+            return new MsgVo(true, "Payment successful");
         } else {
-            return new MsgVo(false, "余额不足，请先充值");
+            return new MsgVo(false, "Insufficient balance, please recharge first");
         }
 
     }
@@ -202,7 +202,7 @@ public class StallServiceImpl extends ServiceImpl<StallMapper, Stall> implements
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Boolean payMoneyManager(StallRes stallRes) {
-        //查询车主用户
+        //Query car owner user
         User carUser = userMapper.selectOne(
                 Wrappers.<User>lambdaQuery().eq(User::getUsername, stallRes.getPerson())
         );
@@ -211,21 +211,21 @@ public class StallServiceImpl extends ServiceImpl<StallMapper, Stall> implements
             return false;
         }
 
-        //更新用户余额
+        //Update user balance
         carUser.updateMoney(stallRes.getMoney());
         userMapper.updateById(carUser);
 
-        //设置车位空闲状态
+        //Set parking space vacancy status
         stallMapper.setStallOrg(stallRes.getStallId());
 
-        //更新停车记录
+        //Update parking record
         StallRes userStrllRes = new StallRes();
         userStrllRes.setPid(stallRes.getPid());
         userStrllRes.setOverTime(LocalDateTime.now());
         userStrllRes.setMoney(stallRes.getMoney());
         stallResMapper.updateById(userStrllRes);
 
-        //保存缴费记录
+        //Keep payment records
         Recharge recharge = new Recharge();
         recharge.setMoney(stallRes.getMoney());
         recharge.setPerson(stallRes.getPerson());

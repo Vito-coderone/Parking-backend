@@ -9,7 +9,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 停车记录
+ * Parking record
  *
  * @author: Zi Cheng
  * @date: 2024-10-07
@@ -19,43 +19,43 @@ import java.time.LocalDateTime;
 public class StallRes {
 
     /**
-     * 主键
+     * Primary Key
      */
     @TableId(value = "pid", type = IdType.AUTO)
     private Integer pid;
 
     /**
-     * 用户名
+     * username
      */
     @TableField("person")
     private String person;
 
     /**
-     * 车位id
+     * Parking space id
      */
     @TableField("stall_id")
     private Integer stallId;
 
     /**
-     * 创建时间
+     * Creation time
      */
     @TableField("create_time")
     private LocalDateTime createTime;
 
     /**
-     * 结束时间
+     * End time
      */
     @TableField("over_time")
     private LocalDateTime overTime;
 
     /**
-     * 缴费金额
+     * Payment amount
      */
     @TableField("pay_money")
     private Double money;
 
     /**
-     * 车位
+     * Parking Space
      */
     @TableField(exist = false)
     private Stall stall;

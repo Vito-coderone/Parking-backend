@@ -6,26 +6,26 @@ import com.shanzhu.parking.entity.po.User;
 import com.shanzhu.parking.entity.vo.MsgVo;
 
 /**
- * 车位收费信息 服务层
+ * Parking fee information Service layer
  *
- * @author: ShanZhu
+ * @author: Cheng Zi
  * @date: 2023-12-02
  */
 public interface FeeService extends IService<Fee> {
 
     /**
-     * 更新车位收费费用
+     * Update parking fee
      *
-     * @param fee 车位信息
-     * @return 结果
+     * @param fee Parking space information
+     * @return result
      */
     MsgVo updateFee(Fee fee);
 
     /**
-     * 用户余额充值
+     * User balance recharge
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user User Information
+     * @return result
      */
     MsgVo addUserFee(User user);
 }

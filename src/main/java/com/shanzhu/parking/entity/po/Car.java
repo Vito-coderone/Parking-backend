@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * 汽车
+ * car
  *
  * @author: Zi Cheng
  * @date: 2024-09-22
@@ -21,29 +21,29 @@ public class Car implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 车辆编号
+     * Vehicle number
      */
     @TableId(value = "tid", type = IdType.AUTO)
     private Integer tid;
 
     /**
-     * 车牌号
+     * License plate number
      */
     private String card;
 
     /**
-     * 车类别
+     * Car Type
      */
     @TableField("car_type")
     private String carType;
 
     /**
-     * 用户
+     * user
      */
     private String person;
 
     /**
-     * 录入时间
+     * Entry time
      */
     private LocalDateTime xtime;
 

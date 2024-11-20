@@ -28,7 +28,7 @@ import java.util.List;
 
 
 /**
- * 用户信息 服务层实现类
+ * User information service layer implementation class
  *
  * @author: ChengZi
  * @date: 2024-10-02
@@ -48,60 +48,60 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             User existUser = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,
                     user.getUsername()));
 
-            //用户能查到
+            //Users can find
             if (existUser != null) {
-                //密码匹配成
+                //Encrypt the entered password and compare it with the password in the database
                 if (user.getPassword().equals(existUser.getPassword())) {
-                    //记录登录日志
+                    //Record login log
                     recommendLoginInfo(existUser.getUsername(), IpUtils.getRequest());
-                    return new UserInfoVo(existUser.getUid(), existUser.getRole(), true, "验证成功");
+                    return new UserInfoVo(existUser.getUid(), existUser.getRole(), true, "Verification Success");
                 } else {
-                    return new UserInfoVo().setState(false).setMsg("密码错误");
+                    return new UserInfoVo().setState(false).setMsg("Wrong password");
                 }
             } else {
-                return new UserInfoVo().setState(false).setMsg("用户名不存在");
+                return new UserInfoVo().setState(false).setMsg("Username does not exist");
             }
         }
 
-        return new UserInfoVo().setState(false).setMsg("用户名和密码不能为空");
+        return new UserInfoVo().setState(false).setMsg("Username does not exist");
     }
     */
     @Override
     public UserInfoVo login(User user) {
         if (user != null && StrUtil.isNotBlank(user.getUsername()) && StrUtil.isNotBlank(user.getPassword())) {
-            // 查询用户信息
+            // Query user information
             User existUser = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,
                     user.getUsername()));
     
-            // 用户能查到
+            // Users can find
             if (existUser != null) {
-                // 将输入的密码进行加密后，与数据库中的密码进行比较
+                // Encrypt the entered password and compare it with the password in the database
                 String hashedPassword = hashPassword(user.getPassword());
                 if (hashedPassword.equals(existUser.getPassword())) {
-                    // 记录登录日志
+                    // Record login log
                     recommendLoginInfo(existUser.getUsername(), IpUtils.getRequest());
-                    return new UserInfoVo(existUser.getUid(), existUser.getRole(), true, "验证成功");
+                    return new UserInfoVo(existUser.getUid(), existUser.getRole(), true, "Verification Success");
                 } else {
-                    return new UserInfoVo().setState(false).setMsg("密码错误");
+                    return new UserInfoVo().setState(false).setMsg("Wrong password");
                 }
             } else {
-                return new UserInfoVo().setState(false).setMsg("用户名不存在");
+                return new UserInfoVo().setState(false).setMsg("Username does not exist");
             }
         }
     
-        return new UserInfoVo().setState(false).setMsg("用户名和密码不能为空");
+        return new UserInfoVo().setState(false).setMsg("Username and password cannot be empty");
     }
     
 
 
     /**
-     * 记录登录日志
+     * Record login log
      */
     public void recommendLoginInfo(String username, HttpServletRequest request) {
         LoginInfo loginInfo = new LoginInfo();
-        // 获取客户端IP
+        // Get the client IP
         String ip = IpUtils.getIpAddress(request);
-        // 获取客户端操作信息
+        // Get client operation information
         UserAgent userAgent = UserAgent.parseUserAgentString(request.getHeader("User-Agent"));
 
         loginInfo.setIp(ip);
@@ -114,16 +114,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public Boolean register(User user) {
-        //没有用户信息
+        //No user information
         if (user == null) {
             return false;
         }
         user.setCreateTime(LocalDateTime.now());
 
-        //注册的用户不存在
+        //The registered user does not exist
         User existUser = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, user.getUsername()));
         if (existUser == null) {
-            //保存用户
+            //Save User
             return this.save(user);
         }
 
@@ -134,11 +134,11 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     public Boolean add(User user) {
         if (user != null && StrUtil.isNotBlank(user.getUsername())) {
 
-            //查询用户不存在
+            //The query user does not exist
             User existUser = userMapper.selectOne(Wrappers.<User>lambdaQuery().eq(User::getUsername,
                     user.getUsername()));
             if (existUser == null) {
-                //保存用户信息
+                //Save user information
                 return this.save(user);
             }
         }
@@ -162,7 +162,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public boolean resetPassword(Integer uid) {
-        //重置密码为123456
+        //Reset password to 123456
         User user = new User();
         user.setUid(uid);
         user.setPassword("123456");
@@ -172,17 +172,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     @Override
     public IPage<User> getUsersPage(UserQuery userQuery) {
-        //分页信息
+        //Paging Information
         Page<User> page = new Page<>(userQuery.getPagenum(), userQuery.getPageSize());
 
         return lambdaQuery()
-                //模糊查询用户名
+                //Fuzzy query user name
                 .like(StrUtil.isNotBlank(userQuery.getUsername()), User::getUsername, userQuery.getUsername())
-                //模糊查询姓名
+                //Fuzzy query name
                 .like(StrUtil.isNotBlank(userQuery.getNike()), User::getNike, userQuery.getNike())
-                //模糊查询车牌号
+                //Fuzzy query license plate number
                 .like(StrUtil.isNotBlank(userQuery.getCard()), User::getCard, userQuery.getCard())
-                //分页查询
+                //Pagination Query
                 .page(page);
 
     }
@@ -221,21 +221,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
     
     /**
-     * 批量加密数据库中用户的明文密码
+     * Batch encrypt the plaintext passwords of users in the database
      */
     public void encryptExistingPasswords() {
-        // 查询所有用户
+        // Query all users
         List<User> users = userMapper.selectList(null);
 
         for (User user : users) {
-            // 如果密码不是加密状态，进行加密
-            if (user.getPassword() != null && !user.getPassword().matches("^[a-fA-F0-9]{64}$")) { // 仅示例正则
+            // If the password is not encrypted, encrypt it
+            if (user.getPassword() != null && !user.getPassword().matches("^[a-fA-F0-9]{64}$")) { 
                 String hashedPassword = hashPassword(user.getPassword());
                 user.setPassword(hashedPassword);
-                // 更新到数据库
+                // Update to database
                 userMapper.updateById(user);
             }
         }
-        System.out.println("所有用户密码已加密！");
+        System.out.println("All user passwords are encrypted!");
     }
 }

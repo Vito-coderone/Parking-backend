@@ -8,18 +8,18 @@ import java.net.UnknownHostException;
 
 
 /**
- * IP 相关工具类
+ * IP related tools
  *
- * @author: ShanZhu
+ * @author:     Zi Cheng
  * @date: 2023-12-02
  */
 public class IpUtils {
 
     /**
-     * 获取请求主机IP地址,如果通过代理进来，则透过防火墙获取真实IP地址
+     * Get the IP address of the requesting host. If it comes in through a proxy, get the real IP address through the firewall
      *
      * @param request http request
-     * @return ip地址
+     * @return ip address
      */
     public static String getIpAddress(HttpServletRequest request) {
         String ipAddress = request.getHeader("x-forwarded-for");
@@ -32,7 +32,7 @@ public class IpUtils {
         if (ipAddress == null || ipAddress.length() == 0 || "unknown".equalsIgnoreCase(ipAddress)) {
             ipAddress = request.getRemoteAddr();
             if (ipAddress.equals("127.0.0.1") || ipAddress.equals("0:0:0:0:0:0:0:1")) {
-                //根据网卡取本机配置的IP
+                //Get the IP configured on the local machine according to the network card
                 InetAddress inet = null;
                 try {
                     inet = InetAddress.getLocalHost();
@@ -42,7 +42,7 @@ public class IpUtils {
                 ipAddress = inet.getHostAddress();
             }
         }
-        //对于通过多个代理的情况，第一个IP为客户端真实IP,多个IP按照','分割
+        //For multiple proxies, the first IP is the real IP of the client, and multiple IPs are separated by ','
         //"***.***.***.***".length() = 15
         if (ipAddress != null && ipAddress.length() > 15) {
             if (ipAddress.indexOf(",") > 0) {
@@ -53,7 +53,7 @@ public class IpUtils {
     }
 
     /**
-     * 获取request请求
+     * Get request request
      */
     public static HttpServletRequest getRequest() {
         return (HttpServletRequest) SaHolder.getRequest().getSource();

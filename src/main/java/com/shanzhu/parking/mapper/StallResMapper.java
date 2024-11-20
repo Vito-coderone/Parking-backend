@@ -11,27 +11,27 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * 停车记录 持久层
+ * Parking record persistence layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper
 public interface StallResMapper extends BaseMapper<StallRes> {
 
     /**
-     * 获取用户所有停车记录
+     * Get all parking records of the user
      *
-     * @param person 用户名
-     * @return 停车记录
+     * @param person username
+     * @return Parking record
      */
     List<StallRes> getAllStallRes(@Param("person") String person);
 
     /**
-     * 获取所有停车记录
+     * Get all parking records
      *
-     * @param person 用户名
-     * @return 停车记录
+     * @param person username
+     * @return Parking record
      */
     IPage<StallRes> getAllListStallRes(Page<StallRes> page, @Param("person") String person,
                                        @Param("inTime") LocalDateTime inTime,

@@ -64,7 +64,8 @@ public class UserController {
      * Add a new user
      *
      * @param user User Information
-     * @return 结果
+     * @return Result
+     * 
      */
     @PostMapping("/add")
     public R<Boolean> addUser(@RequestBody User user) {
@@ -72,10 +73,10 @@ public class UserController {
     }
 
     /**
-     * 根据用户ID删除用户信息
+     * Delete user information based on user ID
      *
-     * @param uid 用户id
-     * @return 结果
+     * @param uid user id
+     * @return result
      */
     @GetMapping("/del")
     public R<Boolean> delUser(Integer uid) {
@@ -83,10 +84,10 @@ public class UserController {
     }
 
     /**
-     * 分页获取用户
+     * Get users by page
      *
-     * @param userQuery 条件信息
-     * @return 用户信息
+     * @param userQuery condition information
+     * @return user information
      */
     @PostMapping("/getUsers")
     public R<IPage<User>> getUsersPage(@RequestBody UserQuery userQuery) {
@@ -94,10 +95,10 @@ public class UserController {
     }
 
     /**
-     * 更改用户信息
+     * Change User Information
      *
-     * @param user 用户信息
-     * @return 更新结果
+     * @param user User Information
+     * @return Update results
      */
     @PostMapping("/update")
     public R<Boolean> update(@RequestBody User user) {
@@ -105,10 +106,10 @@ public class UserController {
     }
 
     /**
-     * 用户更改个人信息
+     * User changes personal information
      *
-     * @param user 用户信息
-     * @return 更新结果
+     * @param user User Information
+     * @return Update results
      */
     @PostMapping("/updateByUser")
     public R<Boolean> updateByUser(@RequestBody User user) {
@@ -116,10 +117,10 @@ public class UserController {
     }
 
     /**
-     * 重置密码
+     * Reset Password
      *
-     * @param uid 用户id
-     * @return 结果
+     * @param uid User id
+     * @return Result
      */
     @GetMapping("/resetPassword")
     public R<Boolean> resetPassword(Integer uid) {
@@ -128,10 +129,10 @@ public class UserController {
 
 
     /**
-     * 通过用户id查询
+     * Query by user id
      *
-     * @param uid 用户id
-     * @return 用户
+     * @param uid User id
+     * @return User
      */
     @GetMapping("/getUserByUid")
     public R<User> gerUserByUid(Integer uid) {
@@ -140,10 +141,10 @@ public class UserController {
 
 
     /**
-     * 用户充值
+     * User recharge
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user User Information
+     * @return Result
      */
     @PostMapping("/userPay")
     public R<Boolean> userPay(@RequestBody User user) {
@@ -151,10 +152,10 @@ public class UserController {
     }
 
     /**
-     * 获取用户停车类型记录
+     * Get user parking type records
      *
-     * @param person 用户
-     * @return 停车位类型
+     * @param person user
+     * @return Parking space type
      */
     @GetMapping("/getCarTypes")
     public R<List<DateType>> getCarTypes(String person) {
@@ -162,10 +163,10 @@ public class UserController {
     }
 
     /**
-     * 获取用户缴费记录
+     * Get user payment records
      *
-     * @param person 用户
-     * @return 缴费记录
+     * @param person user
+     * @return Payment Record
      */
     @GetMapping("/dataMoney")
     public R<List<DateType>> getUserMoney(String person) {

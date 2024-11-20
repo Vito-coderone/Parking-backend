@@ -6,18 +6,18 @@ import com.shanzhu.parking.entity.po.LoginInfo;
 import com.shanzhu.parking.entity.query.LoginInfoQuery;
 
 /**
- * 登录信息 服务层
+ * Login Information Service Layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 public interface LoginInfoService extends IService<LoginInfo> {
 
     /**
-     * 获取登录用户列表
+     * Get the list of logged in users
      *
-     * @param loginInfoQuery 用户信息
-     * @return 用户列表
+     * @param loginInfoQuery User Information
+     * @return User List
      */
     IPage<LoginInfo> getLoginInfoList(LoginInfoQuery loginInfoQuery);
 

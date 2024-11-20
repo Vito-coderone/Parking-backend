@@ -3,7 +3,7 @@ package com.shanzhu.parking.entity.dto;
 import lombok.Data;
 
 /**
- * 统计图数据
+ * Statistical chart data
  *
  * @author: Cheng Zi
  * @date: 2024-09-21
@@ -12,12 +12,12 @@ import lombok.Data;
 public class DateType {
 
     /**
-     * 名称
+     * name
      */
     private String name;
 
     /**
-     * 值
+     * value
      */
     private Integer value;
 

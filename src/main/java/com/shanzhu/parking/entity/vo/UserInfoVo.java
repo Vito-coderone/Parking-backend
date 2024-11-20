@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
- * 用户信息 vo
+ * User Information
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 @Data
@@ -14,22 +14,22 @@ import lombok.experimental.Accessors;
 public class UserInfoVo {
 
     /**
-     * 用户id
+     * user id
      */
     private Integer uid;
 
     /**
-     * 角色id
+     * role id
      */
     private Integer role;
 
     /**
-     * 状态
+     * state
      */
     private Boolean state;
 
     /**
-     * 信息
+     * information
      */
     private String msg;
 

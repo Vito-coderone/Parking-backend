@@ -5,9 +5,9 @@ import com.shanzhu.parking.entity.po.Fee;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 车辆收费信息 持久层
+ * Vehicle charging information   persistence layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper

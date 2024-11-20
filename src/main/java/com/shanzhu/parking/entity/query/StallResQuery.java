@@ -6,41 +6,41 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * 停车记录信息 查询对象
+ * Parking record information      Query object
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 @Data
 public class StallResQuery {
 
     /**
-     * 用户名
+     * username
      */
     private String person;
 
     /**
-     * 停车区域
+     * parking space
      */
     private String stallArea;
 
     /**
-     * 进入时间
+     * entry time
      */
     private LocalDateTime inTime;
 
     /**
-     * 出去时间
+     * exit time
      */
     private LocalDateTime outTime;
 
     /**
-     * 分页大小
+     * page size
      */
     private Integer pageSize;
 
     /**
-     * 分页页数
+     * -page number
      */
     private Integer pagenum;
 

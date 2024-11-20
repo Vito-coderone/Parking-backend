@@ -4,36 +4,36 @@ package com.shanzhu.parking.entity.query;
 import lombok.Data;
 
 /**
- * 停车位信息 查询对象
+ * Parking space information   Query object
  *
- * @author: ShanZhu
- * @date: 2023-12-02
+ * @author: Zi Cheng
+ * @date: 2024-11-02
  */
 @Data
 public class StallQuery {
 
     /**
-     * 停车区域
+     * Parking area
      */
     private String carArea;
 
     /**
-     * 车位类型
+     * Parking space type
      */
     private String carType;
 
     /**
-     * 车位状态
+     * Parking space status
      */
     private String carState;
 
     /**
-     * 分页页数
+     * Number of pages
      */
     private Integer pagenum;
 
     /**
-     * 分页大学
+     * 
      */
     private Integer pageSize;
 

@@ -8,29 +8,29 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 /**
- * 停车位 持久层
+ * Parking Space Persistence Layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper
 public interface StallMapper extends BaseMapper<Stall> {
 
     /**
-     * 设置车位空闲状态
+     * Set parking space vacancy status
      *
-     * @param sid 车位id
-     * @return 结果
+     * @param sid parking space id
+     * @return result
      */
     Integer setStallOrg(@Param("sid") Integer sid);
 
     /**
-     * 获取用户停泊车辆信息
+     * Get user's parked vehicle information
      *
-     * @param page 分页信息
-     * @param nike 昵称
-     * @param card 车牌号
-     * @return 停泊的车辆信息
+     * @param page Paging Information
+     * @param nike nike name
+     * @param card License plate number
+     * @return Parked vehicle information
      */
     IPage<Stall> getStallAll(Page<Stall> page, @Param("nike") String nike, @Param("card") String card);
 }

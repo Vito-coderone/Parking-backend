@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * 登录信息
+ * Login Information
  *
  * @author: Zi Cheng
  * @date: 2024-09-24
@@ -20,33 +20,33 @@ public class LoginInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 登录日志编号
+     * Login ID
      */
     @TableId(value = "yid", type = IdType.AUTO)
     private Integer yid;
 
     /**
-     * 用户
+     * user
      */
     private String person;
 
     /**
-     * IP地址
+     * IP address
      */
     private String ip;
 
     /**
-     * 浏览器
+     * browser
      */
     private String browser;
 
     /**
-     * 操作系统
+     * operating system
      */
     private String os;
 
     /**
-     * 登录时间
+     * login time
      */
     @TableField("login_time")
     private LocalDateTime loginTime;

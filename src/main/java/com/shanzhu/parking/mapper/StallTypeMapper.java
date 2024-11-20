@@ -5,9 +5,9 @@ import com.shanzhu.parking.entity.po.StallType;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 车位类型 持久层
+ * Parking Space Type Persistence Layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper

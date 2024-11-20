@@ -3,7 +3,7 @@ package com.shanzhu.parking.entity.query;
 import lombok.Data;
 
 /**
- * 停车位信息 查询对象
+ * Parking space information  Query object
  *
  * @author: Zi Cheng
  * @date: 2024-10-15
@@ -12,22 +12,22 @@ import lombok.Data;
 public class StallCarQuery {
 
     /**
-     * 名称
+     * name
      */
     private String nike;
 
     /**
-     * 身份证号码
+     * ID number
      */
     private String card;
 
     /**
-     * 分页大小
+     * Page size
      */
     private Integer pageSize;
 
     /**
-     * 分页页码
+     * Pagination page number
      */
     private Integer pagenum;
 

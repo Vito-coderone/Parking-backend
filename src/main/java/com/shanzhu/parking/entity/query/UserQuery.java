@@ -4,36 +4,36 @@ package com.shanzhu.parking.entity.query;
 import lombok.Data;
 
 /**
- * 用户信息 查询对象
+ * User Information Query Object
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 @Data
 public class UserQuery {
 
     /**
-     * 用户名
+     * username
      */
     private String username;
 
     /**
-     * 昵称
+     * name
      */
     private String nike;
 
     /**
-     * 证件号码
+     * ID number
      */
     private String card;
 
     /**
-     * 分页页数
+     * page number
      */
     private Integer pagenum;
 
     /**
-     * 分页大小
+     * page number
      */
     private Integer pageSize;
 

@@ -10,7 +10,7 @@ import com.shanzhu.parking.entity.vo.UserInfoVo;
 import java.util.List;
 
 /**
- * 用户信息 服务层
+ * User Information   service layer
  *
  * @author: Zi Cheng
  * @date: 2024-10-15
@@ -18,90 +18,90 @@ import java.util.List;
 public interface UserService extends IService<User> {
 
     /**
-     * 用户登录
+     * user login
      *
-     * @param user 用户信息
-     * @return 登录结果
+     * @param user user info
+     * @return Login Results
      */
     UserInfoVo login(User user);
 
     /**
-     * 用户注册
+     * User Registration
      *
-     * @param user 用户信息
+     * @param user user info
      * @return boolean
      */
     Boolean register(User user);
 
     /**
-     * 新增用户
+     * add user
      *
-     * @param user 用户信息
+     * @param user user info
      * @return boolean
      */
     Boolean add(User user);
 
     /**
-     * 删除用户
+     * delate user
      *
-     * @param uid 用户id
+     * @param uid user id
      * @return boolean
      */
     Boolean delUser(Integer uid);
 
     /**
-     * 更新用户信息
+     * update user info
      *
-     * @param user 用户信息
+     * @param user user info
      * @return boolean
      */
     Boolean updateUser(User user);
 
     /**
-     * 用户更新个人信息
+     * User updates personal information
      *
-     * @param user 用户信息
-     * @return 结果
+     * @param user user info
+     * @return result
      */
     Boolean updateByUser(User user);
 
     /**
-     * 重置密码
+     * Reset Password
      *
-     * @param uid 用户编号
+     * @param uid User Number
      * @return boolean
      */
     boolean resetPassword(Integer uid);
 
     /**
-     * 分页获取用户
+     * Get users by page
      *
-     * @param userQuery 条件信息
-     * @return 用户
+     * @param userQuery Condition Information
+     * @return user
      */
     IPage<User> getUsersPage(UserQuery userQuery);
 
     /**
-     * 用户充值
+     * User recharge
      *
-     * @param user 用户信息
+     * @param user user info
      * @return Boolean
      */
     Boolean userPay(User user);
 
     /**
-     * 获取用户停车类型记录
+     * Get user parking type records
      *
-     * @param person 用户
-     * @return 停车位类型
+     * @param person user
+     * @return Parking space type
      */
     List<DateType> getUserDataType(String person);
 
     /**
-     * 获取用户缴费记录
+     * Get user payment records
      *
-     * @param person 用户
-     * @return 缴费记录
+     * @param person user 
+     * @return Payment Record
      */
     List<DateType> getUserDataMoney(String person);
 

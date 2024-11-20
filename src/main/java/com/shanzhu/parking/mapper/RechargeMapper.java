@@ -5,9 +5,9 @@ import com.shanzhu.parking.entity.po.Recharge;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 充值 持久层
+ * Recharge Persistence Layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper

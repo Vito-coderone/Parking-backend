@@ -5,9 +5,9 @@ import com.shanzhu.parking.entity.po.LoginInfo;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
- * 用户登录信息 持久层
+ * User login information persistence layer
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-11-25
  */
 @Mapper

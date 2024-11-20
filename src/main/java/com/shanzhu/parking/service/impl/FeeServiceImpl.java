@@ -13,9 +13,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 
 /**
- * 车位收费信息 服务层实现类
+ * Parking fee information service layer implementation class
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 @Service
@@ -36,62 +36,62 @@ public class FeeServiceImpl extends ServiceImpl<FeeMapper, Fee> implements FeeSe
             Boolean updateStatus = this.update(
                     fee, Wrappers.<Fee>lambdaQuery().eq(Fee::getCarType, fee.getCarType()));
 
-            //更新成功
+            //Update Success
             if (updateStatus) {
-                //更新车位收费
+                //Update parking fees
                 Stall stall = new Stall();
                 stall.setStallType(fee.getCarType());
                 stall.setStallMoney(fee.getMoney());
                 stallService.update(stall, Wrappers.<Stall>lambdaQuery().eq(Stall::getStallType, fee.getCarType()));
 
-                //更新车位价格
+                //Update parking space prices
                 StallType stallType = new StallType();
                 stallType.setOmoney(fee.getMoney());
                 stallType.setOtype(fee.getCarType());
                 stallTypeService.update(stallType, Wrappers.<StallType>lambdaQuery().eq(StallType::getOtype,
                         fee.getCarType()));
 
-                return new MsgVo(true, "更新成功");
+                return new MsgVo(true, "Update Success");
             }
         } else {
-            return new MsgVo(false, "更新失败，填写不完善");
+            return new MsgVo(false, "Update failed, incomplete");
         }
 
-        return new MsgVo(false, "更新失败，请重试");
+        return new MsgVo(false, "Update failed, please try again");
     }
 
     @Override
     public MsgVo addUserFee(User user) {
         if (StrUtil.isNotBlank(user.getUsername()) && user.getMoney() != null) {
-            //查询用户
+            //Query User
             User existUser = userService.getOne(Wrappers.<User>lambdaQuery().eq(User::getUsername, user.getUsername()));
 
-            //用户不存在
+            //User does not exist
             if (existUser == null) {
-                return new MsgVo(false, "充值失败,用户不存在");
+                return new MsgVo(false, "Recharge failed, user does not exist");
             }
 
             Double mon = user.getMoney();
             Double non = existUser.getMoney() == null ? 0 : existUser.getMoney();
 
-            //更新充值余额
+            //Update recharge balance
             user.setMoney(non + user.getMoney());
             Boolean updateStatus = userService.update(
                     user, Wrappers.<User>lambdaQuery().eq(User::getUsername, user.getUsername()));
 
             if (updateStatus) {
-                //保存充值记录
+                //Save recharge records
                 Recharge recharge = new Recharge();
                 recharge.setCtime(LocalDateTime.now());
                 recharge.setPerson(user.getUsername());
                 recharge.setMoney(mon);
                 rechargeService.save(recharge);
 
-                return new MsgVo(true, "充值成功");
+                return new MsgVo(true, "Recharge successful");
             }
         }
 
-        return new MsgVo(false, "充值失败，填写不完善");
+        return new MsgVo(false, "Recharge failed, incomplete information");
 
     }
 }

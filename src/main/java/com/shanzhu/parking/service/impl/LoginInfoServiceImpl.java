@@ -12,9 +12,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- * 登录信息 服务层实现类
+ * Login information Service layer implementation class
  *
- * @author: ShanZhu
+ * @author: Zi Cheng
  * @date: 2023-12-02
  */
 @Service
@@ -23,14 +23,14 @@ public class LoginInfoServiceImpl extends ServiceImpl<LoginInfoMapper, LoginInfo
 
     @Override
     public IPage<LoginInfo> getLoginInfoList(LoginInfoQuery loginInfoQuery) {
-        //分页条件
+        //Paging conditions
         Page<LoginInfo> page = new Page<>(loginInfoQuery.getPagenum(), loginInfoQuery.getPageSize());
 
-        //查询条件
+        //Query conditions
         return lambdaQuery()
-                //模糊查询用户名用户名
+                //Fuzzy query username username
                 .like(StrUtil.isNotBlank(loginInfoQuery.getPerson()),LoginInfo::getPerson, loginInfoQuery.getPerson())
-                //模糊查询ip
+                //Fuzzy query IP
                 .like(StrUtil.isNotBlank(loginInfoQuery.getIp()),LoginInfo::getIp, loginInfoQuery.getIp())
                 .page(page);
     }
