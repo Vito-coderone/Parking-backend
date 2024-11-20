@@ -5,7 +5,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * 接口返回包装
+ * Interface return package
  *
  * @author: Zi Cheng
  * @date: 2024-09-22
@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class R<T> implements Serializable {
 
     /**
-     * 自定义标识
+     * Custom Logo
      */
     private Boolean flag;
 
@@ -24,12 +24,12 @@ public class R<T> implements Serializable {
     private String code;
 
     /**
-     * 状态消息
+     * Status Messages
      */
     private String message;
 
     /**
-     * 数据
+     * data
      */
     private T data;
 
