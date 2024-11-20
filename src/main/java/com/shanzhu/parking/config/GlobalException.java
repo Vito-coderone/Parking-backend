@@ -24,7 +24,7 @@ public class GlobalException {
     @ExceptionHandler
     public R<Object> handlerException(Exception e, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
-        log.error("全局异常捕获", e);
+        log.error("Global exception capture", e);
         // Return to the front end
         return R.error(e.getMessage());
     }

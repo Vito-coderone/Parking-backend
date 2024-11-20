@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Mybatis - plus 配置
+ * Mybatis - plus Configuration
  *
- * 什么是MybatisPlus? （https://blog.csdn.net/qq_52922453/article/details/127196313）
+ * What is MybatisPlus? （https://blog.csdn.net/qq_52922453/article/details/127196313）
  *
  * @author: Cheng Zi
  * @date: 2024-09-21
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 public class MybatisPlusConfig {
 
     /**
-     * 分页插件配置
+     * Paging plugin configuration
      *
      * @return MybatisPlusInterceptor
      */

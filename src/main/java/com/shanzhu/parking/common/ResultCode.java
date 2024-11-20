@@ -2,7 +2,7 @@ package com.shanzhu.parking.common;
 
 
 /**
- * 接口返回状态码
+ * Interface return status code
  *
  * @author: Zi Cheng
  * @date: 2024-09-21
@@ -12,17 +12,17 @@ public enum ResultCode {
     /**
      * SUCCESS
      */
-    SUCCESS(true, "200", "成功"),
+    SUCCESS(true, "200", "success"),
 
     /**
      * FAIL
      */
-    FAIL(false, "555", "失败"),
+    FAIL(false, "555", "fail"),
 
     /**
      * ERROR
      */
-    ERROR(false, "666", "系统发生异常");
+    ERROR(false, "666", "System abnormality");
 
     /**
      * STATE
